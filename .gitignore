@@ -1,0 +1,5 @@
+/.env
+/.venv
+/.vscode
+/proxy_test_session.session
+/__pycache__

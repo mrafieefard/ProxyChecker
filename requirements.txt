@@ -1,0 +1,7 @@
+telethon
+v2ray2proxy
+aiohttp
+fastapi
+uvicorn
+python-dotenv
+python-decouple
