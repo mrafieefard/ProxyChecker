@@ -9,6 +9,13 @@ import traceback
 import base64
 from config import API_ID, API_HASH
 import re
+from config import SECRET_KEY
+from fastapi import HTTPException,status
+
+def validate_secret_key(secret_key: str) -> bool:
+    if secret_key != SECRET_KEY:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid secret key")
+    return True
 
 _HEX_RE = re.compile(r"^[0-9a-fA-F]+$")
 

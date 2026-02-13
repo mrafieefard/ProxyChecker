@@ -1,14 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from models import CheckProxyPayload, CheckProxyResult, ProxyType
 
-from functions import check_v2ray,check_telegram
+from functions import check_v2ray,check_telegram,validate_secret_key
 import uvicorn
 
 app = FastAPI()
 
 
 @app.post("/check", response_model=CheckProxyResult)
-async def check_proxy_route(payload: CheckProxyPayload):
+async def check_proxy_route(payload: CheckProxyPayload,request: Request):
+    validate_secret_key(request.headers.get("secret-key", ""))
     if payload.proxy_type == ProxyType.v2ray:
         latency = await check_v2ray(payload.url)
 
