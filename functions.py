@@ -1,4 +1,4 @@
-from v2ray2proxy import V2RayProxy
+from singbox2proxy import SingBoxProxy
 import aiohttp
 import asyncio
 import time
@@ -20,7 +20,7 @@ def validate_secret_key(secret_key: str) -> bool:
 _HEX_RE = re.compile(r"^[0-9a-fA-F]+$")
 
 async def check_v2ray(proxy_url):
-    proxy = V2RayProxy(proxy_url)
+    proxy = SingBoxProxy(proxy_url)
 
     try:
         # Use with aiohttp

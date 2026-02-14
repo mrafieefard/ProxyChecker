@@ -1,5 +1,5 @@
 telethon
-v2ray2proxy
+singbox2proxy
 aiohttp
 fastapi
 uvicorn
