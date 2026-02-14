@@ -12,6 +12,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
+    curl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
@@ -20,6 +22,10 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
+
+# Copy and run singbox installation script
+COPY singbox_install.sh .
+RUN chmod +x singbox_install.sh && ./singbox_install.sh
 
 # Copy application code
 COPY . .
